@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/bubble_32px.png">
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/ionicons@4.4.6/dist/css/ionicons.min.css">
+  
+  <title>math bubbles</title>
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="page-header"></header>
+    <main class="page-main">
+      
+      <div class="section-one">
+        
+        <nav class="navbar" id="navbar-id">
+          <div>
+            <h1>math bubbles</h1>
+            <div class="menu-icon" onclick="openMenu(this)">
+              <div class="bar1"></div>
+              <div class="bar2"></div>
+              <div class="bar3"></div>
+            </div>
+          </div>
+          <ul class="nav-ul" id="nav-ul-id">
+            <li class="nav-content"><a href="">About Us</a></li>
+            <li class="nav-content"><a href="">Get Started</a></li>
+            <li class="nav-content"><a href="./sign_up.html">Sign In</a></li>
+          </ul>
+        </nav>
+        <p>
+           Interactive<br>&<br>FUNtastic 
+        </p>
+
+      </div>
+      <div class="section-two">
+
+        <div class="box"></div>
+        <div class="box overlay">
+          <h2>About Us</h2>
+          <p>
+            Math bubbles is an interactive arithmetic learning game. It is based on the Tanzania curriculum
+            suitable for pupils in standard I and II.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="section-three">
+        <div class="section-three-header">
+          <h2>Get Started</h2>
+        </div>
+        <div class="get-started">
+          
+        </div>
+      </div>
+    </main>
+    <footer class="page-footer">
+      <div id="desktop-footer">
+        <div class="footer-div1">
+          <h1>math bubbles</h1>
+          <ul class="icons-list">
+            <li><a href="" target="_blank"><i class="icon ion-logo-facebook"></i></a></li>
+            <li><a href="" target="_blank"><i class="icon ion-logo-twitter"></i></a></li>
+            <li><a href="" target="_blank"><i class="icon ion-logo-pinterest"></i></a></li>
+            <li><a href="" target="_blank"><i class="icon ion-logo-instagram"></i></a></li>
+          </ul>
+        </div>
+        <div class="footer-div2">
+          <ul class="footer-nav"> 
+              <li><a href="">About Us</a></li>
+              <li><a href="">Get Started</a></li>
+              <li><a href="">Sign In</a></li>
+          </ul>
+          <small>&copy; 2022 mathbubbles. All rights reserved.</small>
+        </div>
+        
+      </div>
+      <div id="mobile-footer">
+        <h1>loopstudios</h1>
+        <ul>
+            <li><a href="">About</a></li>
+            <li><a href="">Careers</a></li>
+            <li><a href="">Events</a></li>
+            <li><a href="">Products</a></li>
+            <li><a href="">Support</a></li>
+        </ul>
+        <ul class="mobile-icons">
+          <li><a href="" target="_blank"><i class="icon ion-logo-facebook"></i></a></li>
+          <li><a href="" target="_blank"><i class="icon ion-logo-twitter"></i></a></li>
+          <li><a href="" target="_blank"><i class="icon ion-logo-pinterest"></i></a></li>
+          <li><a href="" target="_blank"><i class="icon ion-logo-instagram"></i></a></li>
+        </ul>
+        <small>&copy; 2021 Loopstudios. All rights reserved.</small>
+        <small>
+          Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+        </small>
+        <small>
+          Coded by <a href="https://github.com/LucianaMurimi/loopstudios-landing-page-main">Luciana Murimi</a>
+        </small>
+      </div>
+    </footer>
+  </div>
+<script>
+  function openMenu(x) {
+    x.classList.toggle("change");
+    menu(x);
+  }
+  function menu(x){
+    navBar = document.getElementById("navbar-id");
+    navUL = document.getElementById("nav-ul-id");
+    
+    if(x.classList.contains("change")) {
+      navBar.classList.remove("navbar");
+
+      navBar.classList.add("overlay-nav");
+      navUL.classList.add("nav-ul-res")
+    } else {
+      navBar.classList.remove("overlay-nav");
+      
+      navBar.classList.add("navbar")
+      navUL.classList.remove("nav-ul-res");
+    }
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,466 @@
+/* Importing Fonts */
+@import url("https://fonts.googleapis.com/css?family=Alata:400");
+@import url("https://fonts.googleapis.com/css?family=Josefin Sans:300");
+
+@import url('https://fonts.googleapis.com/css2?family=Sniglet&display=swap');
+
+/*-----------------------------------------------
+Basic Styling */
+:root {
+	--main-white-color:  hsl(0, 0%, 100%);
+    --main-black-color: hsl(0, 0%, 0%);
+    --dark-gray-color: hsl(0, 0%, 55%);
+    --very-dark-gray-color: hsl(0, 0%, 41%);
+}
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+body {
+    background-color: var(--main-white-color);
+    /* font: 15px/1.5 "Josefin Sans", sans-serif; */
+    font: 15px/1.5 "Sniglet", sans-serif;
+}
+
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/*-----------------------------------------------
+.section-one Styling */
+.section-one {
+    display: flex;
+	flex-direction: column;
+	flex-grow: 1;	/*expands to cover available space inside the flex container*/
+	min-height: 100vh;
+    background-image: url(../images/desktop/image-hero.jpg);
+    background-repeat: no-repeat;
+    background-size: cover; 
+
+    color: var(--main-white-color);
+    padding: 3em 9em;
+}
+/* .section-one nav */
+.navbar, .footer-div1, .footer-div2 {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: space-between; 
+    align-items: center;
+}
+.section-one h1, .footer-div1 h1 {
+    font-size: 2.2em;
+    font-weight: bolder;
+}
+/* .section-one ul  */
+.nav-ul {
+    list-style: none;
+	display: flex;
+	order: 1;
+	width: auto; 
+    margin-top: 0;
+}
+.section-one li {
+    font-weight: bold;
+}
+.section-one ul li:not(:last-child) {
+	padding-right: 40px;
+}
+.section-one a {
+    text-decoration: none;
+    color: inherit;
+}
+.section-one a:hover {
+    text-decoration: underline;
+}
+.section-one p {
+    margin: auto 0;
+    max-width: 480px;
+    padding: 0.4em;
+    border: 4px solid var(--main-white-color);
+    border-radius: 36px;
+
+    font-size: 4em;
+    /* text-transform: uppercase; */
+    text-align: center;
+}
+/*-----------------------------------------------
+.section-two Styling */
+.section-two {
+    min-height: 80vh;
+    margin: 9em 9em;
+    position: relative;
+}
+.box {
+    width: 65vw;
+    height: 85vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 1;
+    background-image: url(../images/desktop/image-interactive.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+  
+.overlay {
+    width: 40vw;
+    height: 56vh;
+    z-index: 2;
+    margin: 15em 9em 9em 38em;
+    background: var(--main-white-color);
+
+    padding: 5em 2em 5em 5em;
+}
+.overlay h2 {
+    /* font: 3em/1 "Josefin Sans", sans-serif; */
+    font: 3em/1 "Sniglet", sans-serif;
+    text-transform: uppercase;
+    margin-bottom: 0.5em;
+  }
+.overlay p {
+    /* font-family: "Alata", sans-serif; */
+    font-family: "Sniglet", sans-serif;
+  }
+/*-----------------------------------------------
+.section-three Styling */
+.section-three {
+    min-height: 100vh;
+    margin: 9em 9em; 
+}
+.section-three-header {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: space-between; 
+    align-items: center; 
+}
+.section-three-header h2 {
+    /* font: 3em "Josefin Sans", sans-serif; */
+    font: 3em "Sniglet", sans-serif;
+    text-transform: uppercase;
+}
+.section-three-header button,  #mobile-btn {
+	background: none;
+	outline: none;
+    cursor: pointer;
+    
+    font-family: inherit;
+    font-size: 1em;
+    font-weight: bolder;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 2px;
+    word-spacing: 5px;
+	padding: 0.6em 1.6em;
+    border: 2px solid var(--very-dark-gray-color);
+}
+.section-three-header button:hover, #mobile-btn:hover {
+    background-color: var(--dark-gray-color);
+    color: var(--main-white-color);
+}
+#mobile-btn {
+    display: none;
+}
+
+/* overlay text */
+picture {
+	position: relative;
+}
+.overlay-text {
+	position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 1.5em 1.5em 1em;
+  	color: var(--main-white-color);
+    font-size: 1.6em;
+    line-height: 1.2;
+    text-align: left;
+    text-transform: uppercase;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8) );   
+}
+/*-----------------------------------------------
+Footer Styling */
+.page-footer {
+    display: flex;
+    flex-direction: column;
+    min-height: 20vh;
+    background-color: var(--main-black-color);
+    padding: 2em 9em;
+    color: var(--main-white-color);
+    /* font: "Alata", sans-serif; */
+    font: "Sniglet", sans-serif;
+}
+.footer-div1 ul {
+    font-size: 1.8em;
+}
+.footer-div2 {
+    margin: 1em 0;
+    font-weight: bold;
+}
+.footer-div1 ul, .footer-div2 ul {
+    list-style: none;
+	display: flex;
+	width: auto; 
+}
+.footer-div1 ul li:not(:last-child) {
+    padding-right: 20px;
+}
+.footer-div2 ul li:not(:last-child){
+	padding-right: 40px;
+}
+.footer-div1 a, .footer-div2 a {
+    text-decoration: none;
+    color: inherit;
+}
+.attribution {
+    text-align: center;
+}
+small {
+    color: var(--dark-gray-color);
+    font-weight: bold;
+}
+/*-----------------------------------------------
+ MOBILE RESPOSNSIVENESS */
+ #mobile-footer {
+     display: none;
+ }
+ @media screen and (max-width: 1280px) {
+    /* margins and paddings reduced */
+    .section-one {
+        padding: 3em 6em;
+    }
+    .section-two {
+        margin: 6em 6em;
+        min-height: unset;
+    }
+    .section-three {
+        margin: 0 6em 6em 6em; 
+    }
+    .page-footer {
+        padding: 2em 6em;
+    }
+    /* reduced fonts */
+    .section-one p {
+        font-size: 3.5em;
+    }
+    .overlay h2, .section-three-header h2 {
+        font-size: 2.5em
+    }
+   /* .section-two display: continuous */
+    .box {
+        margin: 0 auto;
+        position: unset;
+        height: 50vh;
+    }
+    .overlay {
+        margin: 0 auto;
+        height: auto;
+        width: auto;
+        padding: 2.5em 5em 0 5em;  
+        text-align: center;
+    }    
+ }
+
+ @media screen and (max-width: 768px) {
+    /* margins and paddings reduced */
+    .section-one {
+        max-height: 80vh;
+        padding: 2.5em 4em; 
+    }
+    .section-one p {
+        margin: auto 0;
+        max-width: 450px;
+    }
+    .section-two {
+        margin: 4em 4em;
+        min-height: unset;
+    }
+    .section-three {
+        margin: 0 4em 4em 4em; 
+    }
+    .page-footer {
+        padding: 1.5em 4em;
+    }
+    /* reduced fonts */
+    .section-one p {
+        font-size: 3em;
+    }
+    .overlay h2, .section-three-header h2 {
+        font-size: 2em
+    }
+    .gallery {
+        margin-top: 2em;
+        display: flex;
+        flex-direction: column;
+        grid-gap: 0.5em;
+    }
+    .overlay-text {
+        background: unset;   
+    }
+
+    /* MENU ICON */
+    .menu-icon {
+        display: inline-block;
+        cursor: pointer;
+        position: absolute;
+        top: 3em;
+        right: 4em;
+    }
+    .bar1, .bar2, .bar3 {
+        width: 25px;
+        height: 2px;
+        background-color: var(--main-white-color);
+        margin: 4px 0;
+        transition: 0.5s;
+    }
+    
+    /* rotate first bar */
+    .change .bar1 {
+        -webkit-transform: rotate(-45deg) translate(-6px, 2.5px);
+        transform: rotate(-45deg) translate(-6px, 2.5px);
+    }
+    
+    /* fade out the second bar */
+    .change .bar2 {
+        opacity: 0;
+    }
+    
+    /* rotate last bar */
+    .change .bar3 {
+        -webkit-transform: rotate(45deg) translate(-6px, -2.5px);
+        transform: rotate(45deg) translate(-6px, -2.5px);
+    }
+    /* the Overlay (background) */
+    .overlay-nav {
+        /* Height & width depends on how you want to reveal the overlay (see JS below) */   
+        height: 100vh;
+        width: 100vw;
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        background-color: var(--main-black-color);
+        overflow-x: hidden; /* Disable horizontal scroll */
+        transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+        
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        padding: 2em 4em;
+    }
+    .nav-ul {
+        display: none;
+    }
+    .nav-ul-res {
+        display: flex;
+        flex-direction: column;
+        list-style: none;
+        text-transform: uppercase;
+        font-weight: unset;
+        font-size: 1.2em;
+        margin-top: 2em;
+    }
+
+    
+ }
+ @media screen and (max-width: 549px) {
+    /* margins and paddings reduced */
+    .section-one {
+        padding: 2em 2em;
+        background-image: url(../images/mobile/image-hero.jpg);
+        background-repeat: no-repeat;
+        background-size: cover; 
+    }
+    .section-one p {
+        max-width: 100vw;
+    }
+    .section-two {
+        margin: 3em 2em;
+    }
+    .box {
+        background-image: url(../images/mobile/image-interactive.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .overlay {
+        padding: 3em 2em 0em 2em;
+        background: var(--main-white-color);
+    }
+    .section-three {
+        margin: 0 2em 2em 2em; 
+    }
+    .overlay-text {
+        padding: 0.8em 1em 0.5em;
+    }
+    .page-footer {
+        padding: 1.5em 2em;
+    }
+    /* reduced fonts */
+    .section-one p {
+        font-size: 2.5em;
+    }
+    .section-three-header {
+        justify-content: center; 
+    }
+    .section-three-header h2{
+        text-align: center;
+    }
+    /* button */
+    #mobile-btn {
+        display: unset
+    }
+    #desktop-btn {
+        display: none;
+    }
+    #mobile-btn {
+        display: block;
+        margin: 1em auto;
+    }
+    /* footer */
+    #mobile-footer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+    #mobile-footer ul {
+        list-style: none;
+        width: auto; 
+        margin: 0.5em auto; 
+    }
+    .mobile-icons {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    #mobile-footer ul li a {
+        text-decoration: none;
+        color: inherit;
+    } 
+    .mobile-icons li:not(:last-child){
+        padding-right: 20px;
+    }
+    #mobile-footer a {
+        text-decoration: none;
+    }
+    small {
+        display: block;
+    }
+    #desktop-footer {
+        display: none;
+    }
+
+    /*responsive nav bar*/
+    .menu-icon {
+        top: 3em;
+        right: 2em;
+    }
+    .overlay-nav {
+        padding: 2em 2em;
+    }
+ }

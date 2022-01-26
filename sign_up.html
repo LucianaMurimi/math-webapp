@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <title>Sign Up</title>
+
+    <!-- Custom styles for this template -->
+    <link href="css/auth.css" rel="stylesheet"/>
+</head>
+
+<body>
+<main class="box">
+    <h2>Sign Up</h2>
+    <form>
+        <div class="inputBox">
+            <label for="email">Email:</label>
+            <input type="text" name="email" id="email" placeholder="example@gmail.com" required/>
+        </div>
+        <div class="inputBox">
+            <label for="name">Name:</label>
+            <input type="text" name="name" id="name" placeholder="Jane Doe" required/>
+        </div>
+
+        <label for="teacher_or_guardian">Select role:</label><br>
+        <fieldset>
+            
+            <div class="radio-class">
+            <input type="radio" class="radio" name="teacher_or_guardian" value=1 id="teacher_or_guardian" />
+            <label for="y">Teacher</label>
+            <input type="radio" class="radio" name="teacher_or_guardian" value=0 id="teacher_or_guardian" />
+            <label for="z">Parent | Guardian</label><br>
+            </div>
+        </fieldset>
+        
+
+        <div class="inputBox">
+            <label for="passwd">Password</label>
+            <input type="passwd" name="passwd" id="passwd" placeholder="password"
+                   required/>
+        </div>
+        <div class="inputBox">
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="confirmPassword" name="confirmPassword" id="confirmPassword" placeholder="password"
+                   required/>
+        </div>
+        <div class="buttons-align">
+            <a class="button" href="./sign_in.html" style="float: left;">Sign In</a>  
+            <button type="submit" name="" style="float: left;">Sign Up</button>
+        </div>
+    </form>
+</main>
+<footer>
+</footer>
+</body>
+
+</html>
