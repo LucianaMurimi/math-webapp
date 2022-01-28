@@ -2,6 +2,10 @@
 
 body {
     font-family: "Sniglet", sans-serif;
+    min-height: 100vh;
+    background-image: url(../images/desktop/image-hero.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
     color: #fff;
 }
 
@@ -40,7 +44,7 @@ body {
     margin-left: 10px;
     margin-right: 10px;
     outline: none;
-    padding: 10px 0px;
+    padding: 10px 2px;
     width: 100%;
 }
 
@@ -70,22 +74,22 @@ fieldset {
     overflow: hidden;
     border: none;
     margin: 2px 0 16px 0;
-  }
+}
   
-  .radio-class {
+.radio-class {
     float: left;
     clear: none;
-  }
+}
   
-  label {
+label {
     float: left;
     clear: none;
     display: block;
     padding: 0px 1em 0px 8px;
-  }
+}
   
-  input[type=radio],
-  input.radio {
+input[type=radio],
+input.radio {
     float: left;
     clear: none;
     margin: 2px 10px 2px 0;

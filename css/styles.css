@@ -88,6 +88,96 @@ body {
     /* text-transform: uppercase; */
     text-align: center;
 }
+/* dashboard Styling */
+.dashboard {
+    flex-direction: column;
+	flex-grow: 1;
+    background-image: url(../images/desktop/image-hero.jpg);
+    background-repeat: no-repeat;
+    background-size: cover; 
+    padding: 6vh 0vw 0vh 6vw;
+    
+}
+.dashboard-signout {
+    margin-right: 3vw;
+    color: white;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+.dashboard .navbar {
+    margin-bottom: 2em;
+}
+.dashboard-h1 {
+    text-align: center;
+}
+.split { 
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+}
+
+/* Control the left side */
+.left {
+    min-width: 20vw;
+    padding: 3em 4em 3em 0;
+    color: white;
+    font-size: 1.2em;
+}
+.left strong {
+    margin-right: 0.6em;      
+}
+
+/* Control the right side */
+.right {
+    min-width: 72vw;
+    background-color: rgba(240, 192, 254, 0.8);
+    border-radius: 1em;
+    padding: 3em 4em;
+    align-items: center;
+}
+
+/* table styling */
+table { 
+    width: 100%;
+    border-collapse: collapse; 
+    font-family: monospace;
+}
+/* zebra striping */
+tr:nth-of-type(odd) { 
+    background: #d3d3d3 
+}
+
+td { 
+    padding: 5px 40px; 
+    text-align: left; 
+}
+
+/*responsiveness of the table*/
+@media screen and (max-width: 768px) {
+	.scoreboard {
+        display: flex;
+        flex-direction: column;
+    }
+    table {
+        width: auto;
+    }
+    td { 
+        padding: 5px 10px; 
+        text-align: left; 
+    }
+}
+
+.mathbubbles {
+    font-weight: bold;
+    font-size: 2.4em;
+}
+#mathbubbles-1 {color: rgb(255, 36, 0)}
+#mathbubbles-2 {color: rgb(255, 165, 0)}
+#mathbubbles-3 {color: rgb(255, 255, 0)}
+#mathbubbles-4 {color: rgb(15, 157, 8)}
+#mathbubbles-5 {color: rgb(254, 0, 154)}
+#mathbubbles-6 {color: rgb(255, 255, 255)}
+  
 /*-----------------------------------------------
 .section-two Styling */
 .section-two {
