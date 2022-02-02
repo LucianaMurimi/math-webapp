@@ -12,45 +12,60 @@
 </head>
 
 <body>
-<main class="box">
-    <h2>Sign Up</h2>
-    <form>
-        <div class="inputBox">
-            <label for="email">Email:</label>
-            <input type="text" name="email" id="email" placeholder="example@gmail.com" required/>
+<main>
+    <nav class="navbar" id="navbar-id">
+        <div>
+          <h1 class="mathbubbles"><span id="mathbubbles-1">ma</span><span id="mathbubbles-2">th</span>
+            <span id="mathbubbles-3">bu</span><span id="mathbubbles-4">bb</span>
+            <span id="mathbubbles-5">le</span><span style="color: rgb(138, 43, 226);">s</span></h1>
+          <div class="menu-icon" onclick="openMenu(this)">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+          </div>
         </div>
-        <div class="inputBox">
-            <label for="name">Name:</label>
-            <input type="text" name="name" id="name" placeholder="Jane Doe" required/>
-        </div>
-
-        <label for="teacher_or_guardian">Select role:</label><br>
-        <fieldset>
-            
-            <div class="radio-class">
-            <input type="radio" class="radio" name="teacher_or_guardian" value=1 id="teacher_or_guardian" />
-            <label for="y">Teacher</label>
-            <input type="radio" class="radio" name="teacher_or_guardian" value=0 id="teacher_or_guardian" />
-            <label for="z">Parent | Guardian</label><br>
+        <!-- <ul class="nav-ul" id="nav-ul-id">
+            <li class="nav-content"><a href="./sign_up.html">Sign Up</a></li>
+        </ul> -->
+    </nav>
+    <div class="box">
+        <h2>Sign Up</h2>
+        <form>
+            <div class="inputBox">
+                <label for="email">Email:</label>
+                <input type="text" name="email" id="email" placeholder="example@gmail.com" required/>
             </div>
-        </fieldset>
-        
+            <div class="inputBox">
+                <label for="name">Name:</label>
+                <input type="text" name="name" id="name" placeholder="Jane Doe" required/>
+            </div>
 
-        <div class="inputBox">
-            <label for="passwd">Password</label>
-            <input type="passwd" name="passwd" id="passwd" placeholder="password"
-                   required/>
-        </div>
-        <div class="inputBox">
-            <label for="confirmPassword">Confirm Password</label>
-            <input type="confirmPassword" name="confirmPassword" id="confirmPassword" placeholder="password"
-                   required/>
-        </div>
-        <div class="buttons-align">
-            <a class="button" href="./sign_in.html" style="float: left;">Sign In</a>  
-            <button type="submit" name="" style="float: left;">Sign Up</button>
-        </div>
-    </form>
+            <label for="teacher_or_guardian">Select role:</label><br>
+            <fieldset>
+                
+                <div class="radio-class">
+                <input type="radio" class="radio" name="teacher_or_guardian" value=1 id="teacher_or_guardian" />
+                <label for="y">Teacher</label>
+                <input type="radio" class="radio" name="teacher_or_guardian" value=0 id="teacher_or_guardian" />
+                <label for="z">Parent | Guardian</label><br>
+                </div>
+            </fieldset>
+            <div class="inputBox">
+                <label for="passwd">Password</label>
+                <input type="passwd" name="passwd" id="passwd" placeholder="password"
+                    required/>
+            </div>
+            <div class="inputBox">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="confirmPassword" name="confirmPassword" id="confirmPassword" placeholder="password"
+                    required/>
+            </div>
+            <div class="buttons-align">
+                <a class="button" href="./sign_in.html" style="float: right;">Sign In</a>
+                <button type="submit" name="" style="float: right; background-color: rgb(23, 169, 99)">Sign Up</button>
+            </div>
+        </form>
+    </div>
 </main>
 <footer>
 </footer>

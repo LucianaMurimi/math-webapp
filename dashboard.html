@@ -20,46 +20,64 @@
           <div>
             <h1 class="mathbubbles"><span id="mathbubbles-1">ma</span><span id="mathbubbles-2">th</span>
               <span id="mathbubbles-3">bu</span><span id="mathbubbles-4">bb</span>
-              <span id="mathbubbles-5">le</span><span id="mathbubbles-6">s</span></h1>
+              <span id="mathbubbles-5">le</span><span style="color: rgb(138, 43, 226);">s</span></h1>
           </div>
-          <div class="dashboard-signout"><i class="fa fa-sign-out" style="color:white;"></i> Log Out</div>
+          <div class="dashboard-signout"><i class="fa fa-sign-out" style="color:#000;"></i> Log Out</div>
         </nav>
       </div>
       <!-- ----------------------------------------------------------- -->
       <div class="split">
 			  <div class="left">
-			    <p><strong style="color: #000;">Name: </strong>Jane Doe</p>
-          <p><strong style="color: #000;">Role: </strong>Parent</p>
-          <p><strong style="color: #000;">No. of Student: </strong> 20</p>
+			    <div class = "summary">
+            <p><strong style="color: #000;">Name: </strong>Jane Doe</p>
+            <p><strong style="color: #000;">Role: </strong>Parent</p>
+            <p><strong style="color: #000;">No. of Pupils: </strong> 20</p>
+          </div>
+
+          <div class = "actions">
+            <p><strong style="color: #000;">ScoreBoard</strong></p>
+            <p><strong style="color: #000;">Register</strong></p>
+            <p><strong style="color: #000;">Students</strong></p>
+          </div>
         </div>
       <!-- ----------------------------------------------------------- -->
 			  <div class = "right">
-          <div>
-            <h1 class="dashboard-h1">Performance Chart</h1>
-            <canvas id="myChart"  style="max-width:60vw;max-height:40vh"></canvas>
-          </div>
-
-          <div>
-            <h1 class="dashboard-h1">Score Board</h1>
-            <table id="scoreboard">
-              <tbody>
-                <tr>
-                  <td><strong>S/N</strong></td>
-                  <td><strong>Name</strong></td>
-                  <td><strong>Total Score</strong></td>
-                </tr>
-                <tr>
-                  <td>01</td>
-                  <td>Jane Doe</td>
-                  <td>3</td>
-                </tr>
-                <tr>
-                  <td>02</td>
-                  <td>John Doe</td>
-                  <td>2</td>
-                </tr>
-              </tbody>
-            </table>
+          <!-- <div class = "right-nav">
+            <div>
+              <button>ScoreBoard</button>
+              <button>Register</button>
+              <button>Student</button>
+            </div>
+            <div class="dashboard-signout"><i class="fa fa-sign-out" style="color:#000;"></i> Log Out</div>
+          </div> -->
+          <div class = "visuals">
+            <div>
+              <h1 class="dashboard-h1">Performance Chart</h1>
+              <canvas id="myChart"  style="max-width:60vw;max-height:40vh"></canvas>
+            </div>
+  
+            <div>
+              <h1 class="dashboard-h1">Score Board</h1>
+              <table id="scoreboard">
+                <tbody>
+                  <tr>
+                    <td><strong>S/N</strong></td>
+                    <td><strong>Name</strong></td>
+                    <td><strong>Total Score</strong></td>
+                  </tr>
+                  <tr>
+                    <td>01</td>
+                    <td>Jane Doe</td>
+                    <td>3</td>
+                  </tr>
+                  <tr>
+                    <td>02</td>
+                    <td>John Doe</td>
+                    <td>2</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
 			  
