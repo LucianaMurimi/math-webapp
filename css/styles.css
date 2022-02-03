@@ -115,6 +115,11 @@ body {
     text-align: center;
     color: rgb(138, 43, 226);
 }
+.dashboard-signout a{
+    text-decoration: none;
+    color: #000;
+    cursor: pointer;
+}
 .split { 
     display: flex;
     flex-direction: row;

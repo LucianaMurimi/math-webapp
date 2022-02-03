@@ -14,6 +14,7 @@
                 $this->conn->exec("set names utf8");
             }catch(PDOException $exception){
                 echo "Database could not be connected: " . $exception->getMessage();
+                die();
             }
             return $this->conn;
         }

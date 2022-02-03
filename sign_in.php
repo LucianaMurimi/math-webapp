@@ -30,26 +30,26 @@
     </nav>
     <div class="box">
         <h2>Sign In</h2>
-        <form>
+        <form action="./includes/sign_in_inc.php" method="post">
             <div class="inputBox">
                 <label for="email">Email:</label>
                 <input type="text" name="email" id="email" placeholder="example@gmail.com" required/>
             </div>
 
             <div class="inputBox">
-                <label for="passwd">Password</label>
+                <label for="passwd">Password:</label>
                 <input type="passwd" name="passwd" id="passwd" placeholder="password" required/>
             </div>
             <div class="button-align">
-                <button type="submit" name="" style="float: right; background-color: rgb(23, 169, 99)">Sign In</button>
-                <a class="button" href="./sign_up.html" style="float: right;">Sign Up</a>  
+                <button type="submit" name="submit" style="float: right; background-color: rgb(23, 169, 99)">Sign In</button>
+                <a class="button" href="./sign_up.php" style="float: right;">Sign Up</a>  
             </div>
         </form>
     </div>
 </main>
 <footer>
 </footer>
-<script src=./js/data.js></script>
+<!-- <script src=./js/data.js></script> -->
 </body>
 
 </html>

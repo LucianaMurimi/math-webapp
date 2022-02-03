@@ -30,7 +30,7 @@
     </nav>
     <div class="box">
         <h2>Sign Up</h2>
-        <form>
+        <form action="./includes/sign_up_inc.php" method="post">
             <div class="inputBox">
                 <label for="email">Email:</label>
                 <input type="text" name="email" id="email" placeholder="example@gmail.com" required/>
@@ -42,27 +42,26 @@
 
             <label for="teacher_or_guardian">Select role:</label><br>
             <fieldset>
-                
                 <div class="radio-class">
-                <input type="radio" class="radio" name="teacher_or_guardian" value=1 id="teacher_or_guardian" />
-                <label for="y">Teacher</label>
-                <input type="radio" class="radio" name="teacher_or_guardian" value=0 id="teacher_or_guardian" />
-                <label for="z">Parent | Guardian</label><br>
+                    <input type="radio" class="radio" name="role" value="Teacher" id="role" />
+                    <label for="Teacher">Teacher</label>
+                    <input type="radio" class="radio" name="role" value="Parent | Guardian" id="role" />
+                    <label for="Parent | Guardian">Parent | Guardian</label><br>
                 </div>
             </fieldset>
+
             <div class="inputBox">
-                <label for="passwd">Password</label>
-                <input type="passwd" name="passwd" id="passwd" placeholder="password"
-                    required/>
+                <label for="passwd">Password: </label>
+                <input type="" name="passwd" id="passwd" placeholder="password" required/>
             </div>
             <div class="inputBox">
-                <label for="confirmPassword">Confirm Password</label>
-                <input type="confirmPassword" name="confirmPassword" id="confirmPassword" placeholder="password"
-                    required/>
+                <label for="confirmPasswd">Confirm Password: </label>
+                <input type="" name="confirmPasswd" id="confirmPasswd" placeholder="password" required/>
             </div>
+
             <div class="buttons-align">
-                <a class="button" href="./sign_in.html" style="float: right;">Sign In</a>
-                <button type="submit" name="" style="float: right; background-color: rgb(23, 169, 99)">Sign Up</button>
+                <a class="button" href="./sign_in.php" style="float: right;">Sign In</a>
+                <button type="submit" name="submit" style="float: right; background-color: rgb(23, 169, 99)">Sign Up</button>
             </div>
         </form>
     </div>
