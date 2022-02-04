@@ -1,6 +1,7 @@
 <?php
 // Database Manipulation
 class SignUp extends Database {
+    private $email;
     // SET user
     protected function setUser($email, $name, $role, $passwd){
         // $stmt = $this->getConnection()->prepare(
@@ -34,7 +35,35 @@ class SignUp extends Database {
         }
 
         $stmt = null;
+        $this->email = str_replace("@gmail.com", "", $email);
+        $this->createStudentsTable();
     }
+
+    protected function createStudentsTable(){
+        $sqlQuery = 'CREATE TABLE '. $this->email .' (
+            id INT AUTO_INCREMENT,
+            student_name VARCHAR(255) NOT NULL,
+            PRIMARY KEY (id)
+        )';
+
+        $stmt = $this->conn->prepare($sqlQuery);
+
+        if(!$stmt->execute()){
+            $stmt = null;
+            header("location: ../sign_up.php?error=failedtocreatetable".$this->email);
+            exit();
+        }
+
+        $stmt = null;
+    }
+
+    // protected function registerStudent($studentName){
+
+    // }
+
+    // protected function studentScores(){
+
+    // }
 
     // check if user already exists
     protected function checkUser($email){

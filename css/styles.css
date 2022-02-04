@@ -115,7 +115,7 @@ body {
     text-align: center;
     color: rgb(138, 43, 226);
 }
-.dashboard-signout a{
+.dashboard-signout a, .actions a{
     text-decoration: none;
     color: #000;
     cursor: pointer;

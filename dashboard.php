@@ -38,9 +38,9 @@
                 </div>
 
                 <div class = "actions">
-                    <p><strong style="color: #000;">ScoreBoard</strong></p>
-                    <p><strong style="color: #000;">Register</strong></p>
-                    <p><strong style="color: #000;">Students</strong></p>
+                    <p><a><strong style="color: #000;"><i class="fa fa-users" style="color:#353839;"></i>&nbsp; Students</strong></a></p>
+                    <p><a><strong style="color: #000;"><i class="fa fa-table" style="color:#353839"></i>&nbsp; ScoreBoard</strong></a></p>
+                    <p><a href="./register_student.php"><strong style="color: #000;"><i class="fa fa-edit" style="color:#353839"></i>&nbsp; Register</strong></a></p>
                 </div>
         </div>
       <!-- ----------------------------------------------------------- -->
