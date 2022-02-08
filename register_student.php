@@ -30,7 +30,7 @@
     </nav>
     <div class="box">
         <h2>Register</h2>
-        <form action="./includes/sign_in_inc.php" method="post">
+        <form action="./includes/register_student_inc.php" method="post">
             <div class="inputBox">
                 <label for="pupil_name">Pupil Name:</label>
                 <input type="text" name="pupil_name" id="pupil_name" placeholder="Jane Doe" required/>
@@ -38,14 +38,13 @@
 
             <div class="button-align">
                 <button type="submit" name="submit" style="float: right; background-color: rgb(23, 169, 99)">Register</button>
-                <a class="button" href="" style="float: right;">Cancel</a>  
+                <a class="button" href="./dashboard.php" style="float: right;">Cancel</a>  
             </div>
         </form>
     </div>
 </main>
 <footer>
 </footer>
-<!-- <script src=./js/data.js></script> -->
 </body>
 
 </html>

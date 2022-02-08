@@ -11,28 +11,46 @@
     $database = new Database();
     $db = $database->getConnection();
 
-    $item = new Registration($db);
+    $items = new Registration($db);
+    $items->db_table = isset($_GET['db_table']) ? $_GET['db_table'] : die();
+    // $items->id = isset($_GET['id']) ? $_GET['id'] : die();
 
-    $item->serial_number = isset($_GET['serial_number']) ? $_GET['serial_number'] : die();
-  
-    $item->getSingleRegistration();
+    $stmt = $items->getSingleStudentScores();
+    $itemCount = $stmt->rowCount();
 
-    if($item->name != null){
-        // create array
-        $emp_arr = array(
-            "serial_number" => $item->serial_number,
-            "email" => $item->email,
-            "name" => $item->name,
-            "teacher_or_guardian" => $item->teacher_or_guardian,
-            "code" => $item->code,
-        );
-      
-        http_response_code(200);
-        echo json_encode($emp_arr);
+    $stmt2 = $items->getLevelOneSum($items->db_table);
+    $stmt2Res = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+    $levelOneSum = $stmt2Res[0]["SUM(level_1)"];
+
+    echo json_encode($itemCount);
+
+
+    
+    if($itemCount > 0){
+        $studentArr = array();
+        $studentArr["body"] = array();
+        $studentArr["itemCount"] = $itemCount;
+        $studentArr["levelOneSum"] = $levelOneSum;
+
+
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+            extract($row);
+            $e = array(
+                "id" => $id,
+                "time" => $time,
+                "level_1" => $level_1,
+                "level_2" => $level_2,
+            );
+
+            array_push($studentArr["body"], $e);
+        }
+        echo json_encode($studentArr);
     }
-      
+
     else{
         http_response_code(404);
-        echo json_encode("Registration record not found.");
+        echo json_encode(
+            array("message" => "No record found.")
+        );
     }
 ?>

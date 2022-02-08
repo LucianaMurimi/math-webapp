@@ -115,10 +115,24 @@ body {
     text-align: center;
     color: rgb(138, 43, 226);
 }
-.dashboard-signout a, .actions a{
+.dashboard-signout a, .actions a, .actions button{
     text-decoration: none;
     color: #000;
     cursor: pointer;
+    font-size: 1.12em;
+
+}
+.actions button {
+    border: none;
+    font-family: "Sniglet", sans-serif;
+}
+#students button {
+    cursor: pointer;
+    border: none;
+    font-family: "Sniglet", sans-serif;
+    text-decoration: none;
+    color: #000;
+    background-color: inherit;
 }
 .split { 
     display: flex;
@@ -173,7 +187,7 @@ body {
 table { 
     width: 100%;
     border-collapse: collapse; 
-    font-family: monospace;
+    font-family: "Sniglet", sans-serif;
 }
 /* zebra striping */
 tr:nth-of-type(odd) { 
@@ -183,6 +197,11 @@ tr:nth-of-type(odd) {
 td { 
     padding: 5px 40px; 
     text-align: left; 
+}
+th { 
+    padding: 12px 40px; 
+    text-align: left; 
+    color: rgb(99, 23, 169);
 }
 
 /*responsiveness of the table*/
@@ -197,6 +216,11 @@ td {
     td { 
         padding: 5px 10px; 
         text-align: left; 
+    }
+    th { 
+        padding: 8px 10px; 
+        text-align: left; 
+        color: rgb(99, 23, 169);
     }
 }
 

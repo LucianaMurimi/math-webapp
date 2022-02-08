@@ -12,12 +12,17 @@
     $db = $database->getConnection();
     
     $item = new Registration($db);
+
+    $item->db_table = isset($_GET['db_table']) ? $_GET['db_table'] : die();
+    $item->id = isset($_GET['id']) ? $_GET['id'] : die();
     
-    $data = json_decode(file_get_contents("php://input"));
+    // $data = json_decode(file_get_contents("php://input"));
+
+    // $item->db_table = $data->db_table;
+    // $item->id = $data->id;
+
     
-    $item->serial_number = $data->serial_number;
-    
-    if($item->deleteRegistration()){
+    if($item->deleteStudent()){
         echo json_encode("Registration record deleted.");
     } else{
         echo json_encode("Registration record could not be deleted");

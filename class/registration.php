@@ -5,7 +5,10 @@
         private $conn;
 
         // Table
-        private $db_table = "registration";
+        // private $db_table = "registration";
+        public $db_table;
+        public $id;
+        public $temp_db_table;
 
         // Columns
         public $serial_number;
@@ -26,6 +29,17 @@
             $stmt->execute();
             return $stmt;
         }
+        //=========================================================
+        //READ ALL Student Records
+        public function getStudents(){
+            $sqlQuery = "SELECT id, student_name FROM " . $this->db_table . "";
+            $stmt = $this->conn->prepare($sqlQuery);
+            $stmt->execute();
+            return $stmt;
+        }
+        //=========================================================
+
+
 
         // CREATE
         public function createRegistration(){
@@ -75,7 +89,102 @@
             $this->name = $dataRow['name'];
             $this->teacher_or_guardian = $dataRow['teacher_or_guardian'];
             $this->code = $dataRow['code'];
-        }        
+        } 
+
+        //=========================================================
+        //READ SINGLE Student Record
+        // READ single
+        public function getSingleStudentScores(){
+            $sqlQuery = "SELECT id, time, level_1, level_2 FROM " . $this->db_table . "";
+            $stmt = $this->conn->prepare($sqlQuery);
+            $stmt->execute();
+            return $stmt;
+        }
+        //=========================================================
+        // RETURN SUM OF COLUMN
+        // public function getLevelOneSum(){
+        //     $sqlQuery = "SELECT SUM(level_1) FROM " . $this->db_table . "";
+        //     $stmt = $this->conn->prepare($sqlQuery);
+        //     $stmt->execute();
+        //     return $stmt;
+        // }
+
+        public function getLevelOneSum($table_name){
+            $this->temp_db_table = $table_name;
+            $sqlQuery = "SELECT SUM(level_1) FROM " . $this->temp_db_table . "";
+            $stmt = $this->conn->prepare($sqlQuery);
+            $stmt->execute();
+            return $stmt;
+        }
+
+        public function getLevelTwoSum($table_name){
+            $this->temp_db_table = $table_name;
+            $sqlQuery = "SELECT SUM(level_2) FROM " . $this->temp_db_table . "";
+            $stmt = $this->conn->prepare($sqlQuery);
+            $stmt->execute();
+            return $stmt;
+        }
+        //=========================================================
+
+        public function dashboardTable(){
+            $studentArr = array();
+            $studentArr["body"] = array();
+            // $studentArr["itemCount"] = $itemCount;
+
+            $sqlQuery = "SELECT id, student_name FROM " . $this->db_table . "";
+            $stmt = $this->conn->prepare($sqlQuery);
+            $stmt->execute();
+            
+            // while ($row = $stmt->fetchAll(PDO::FETCH_ASSOC)){
+            //     extract($row);
+            //     // echo json_encode($row);
+                
+            //     $table_name = $this->db_table . "_" . $id;
+
+            //     $stmt2 = $this->getLevelOneSum($table_name);
+            //     $stmt2Res = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+            //     $levelOneSum = $stmt2Res[0]["SUM(level_1)"];
+
+            //     $sumRes = $this->getLevelTwoSum($table_name);
+            //     $levelTwoSum = $sumRes[0]["SUM(level_2)"];
+
+            //     $e = array(
+            //         "id" => $id,
+            //         "student_name" => $student_name,
+            //         "level_one" => $levelOneSum,
+            //         "level_two" => $levelTwoSum,
+            //     );
+    
+            //     array_push($studentArr["body"], $e);
+            // }
+
+            foreach($stmt->fetchAll(PDO::FETCH_ASSOC) as $row){
+                // echo json_encode($row);
+
+                $table_name = $this->db_table . "_" . $row["id"];
+
+                $stmt2 = $this->getLevelOneSum($table_name);
+                $stmt2Res = $stmt2->fetch(PDO::FETCH_ASSOC);
+                $levelOneSum = $stmt2Res["SUM(level_1)"];
+
+                $stmt3 = $this->getLevelTwoSum($table_name);
+                $stmt3Res = $stmt3->fetch(PDO::FETCH_ASSOC);
+                $levelTwoSum = $stmt3Res["SUM(level_2)"];
+
+                $e = array(
+                        "id" => $row["id"],
+                        "student_name" => $row["student_name"],
+                        "level_one" => $levelOneSum,
+                        "level_two" => $levelTwoSum,
+                        "total_score" => $levelOneSum + $levelTwoSum,
+                    );
+        
+                array_push($studentArr["body"], $e);
+
+            }
+
+            return $studentArr;
+        }
 
         // UPDATE
         // UPDATE
@@ -125,6 +234,30 @@
             }
             return false;
         }
+
+        //=========================================================
+        //DELETE SINGLE Student Record
+        function deleteStudent(){
+            $sqlQuery = "DELETE FROM " . $this->db_table . " WHERE id = ?";
+            $stmt = $this->conn->prepare($sqlQuery);
+        
+            $this->id=htmlspecialchars(strip_tags($this->id));
+        
+            $stmt->bindParam(1, $this->id);
+        
+            if($stmt->execute()){
+                $this->db_table = $this->db_table . "_" . $this->id;
+                $sqlQuery = "DROP TABLE " . $this->db_table;
+                $stmt = $this->conn->prepare($sqlQuery);
+                if($stmt->execute()){
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+        
+        //=========================================================
 
     }
 ?>

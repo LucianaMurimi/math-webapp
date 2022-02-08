@@ -42,7 +42,7 @@ class SignUp extends Database {
     protected function createStudentsTable(){
         $sqlQuery = 'CREATE TABLE '. $this->email .' (
             id INT AUTO_INCREMENT,
-            student_name VARCHAR(255) NOT NULL,
+            student_name VARCHAR(32) NOT NULL,
             PRIMARY KEY (id)
         )';
 
