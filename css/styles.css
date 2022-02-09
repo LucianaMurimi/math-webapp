@@ -122,17 +122,23 @@ body {
     font-size: 1.12em;
 
 }
+.hide {
+    display: none;
+}
 .actions button {
     border: none;
     font-family: "Sniglet", sans-serif;
 }
-#students button {
+#students button, #scoreboard button{
     cursor: pointer;
     border: none;
     font-family: "Sniglet", sans-serif;
     text-decoration: none;
     color: #000;
     background-color: inherit;
+}
+#students button:hover, #scoreboard button:hover{
+    color: rgb(138, 43, 226);
 }
 .split { 
     display: flex;

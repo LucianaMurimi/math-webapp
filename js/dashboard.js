@@ -1,43 +1,26 @@
-let studentsTable = document.querySelector('#students');
+let studentsTable = document.getElementById('students');
+let scoreboardTable = document.getElementById('scoreboard');
+let studentsBtn = document.getElementById('students-id');
+let scoreboardBtn = document.getElementById('scoreboard-id');
+let studentsView = document.getElementById('students-table')
+let scoreboardView = document.getElementById('students-scoreboard');
+
 let email = getCookie("email");
 let dbTable = email.replace("@gmail.com", "");
+let firstStudentID;
+let currentStudentName;
 
-// GET USER DATA
-let getData = (URL, trimRes = false) => {
-    return new Promise((resolve, reject) => {
-        //1. creating a new XMLHttpRequest object
-        const xhr = new XMLHttpRequest();
+let scoreBoardData;
+let allStudentsData;
 
-        //2. defining the API endpoint
-        const url = URL;
+// xValues -> time, y1Values -> level_1, y2Values -> level_2
+var ctx = document.getElementById('myChart').getContext('2d');   
+var performanceGraph;
+let xValues = [];
+let y1Values = [];
+let y2Values = [];
 
-        //3. opening a new connection
-        xhr.open('GET', url, true);
-
-        //4. on receiving request, process it here:
-        xhr.onload = function() {
-            //parse API data ito JSON
-            if(!trimRes){
-                // const data = JSON.parse(this.response.substring(1));
-                const data = this.response;
-                resolve(data);
-            }else{
-                // console.log(this.response);
-                // const data = JSON.parse(this.response);
-                const data = this.response;
-                resolve(data);
-            }
-        }
-
-
-        //5. on error reject
-        xhr.onerror = () => reject(xhr.statusText);
-
-        //6. sending the request
-        xhr.send();
-    });
-}
-
+//=================================================================
 // GET COOKIE VALUES BY KEY
 function getCookie(cname) {
     let name = cname + "=";
@@ -55,41 +38,62 @@ function getCookie(cname) {
     return "";
 }
 
-// UPDATE USER UI
-let updateStudentsUI = (data) => {
-    for(let i in data){
-        let tr = document.createElement('tr');
-        tr.setAttribute("id", `tr${data[i].id}`);
-        
-        tr.innerHTML = (`
-            <td>${data[i].id}</td>
-            <td>${data[i].student_name}</td>
-            <button type="submit" name="submit" class="delete" id=${data[i].id} style="float: right;">&nbsp; Remove <i class="fa fa-trash" style="color:#000;"></i></button>
-        `);
+//=================================================================
+// GET USER DATA
+let getData = (URL) => {
+    return new Promise((resolve, reject) => {
+        //1. creating a new XMLHttpRequest object
+        const xhr = new XMLHttpRequest();
 
-        studentsTable.appendChild(tr);
-    }
+        //2. defining the API endpoint
+        const url = URL;
+
+        //3. opening a new connection
+        xhr.open('GET', url, true);
+
+        //4. on receiving request, process it here:
+        xhr.onload = function() {
+            //parse API data ito JSON
+            const data = JSON.parse(this.response);
+            resolve(data);
+        }
+
+        //5. on error reject
+        xhr.onerror = () => reject(xhr.statusText);
+
+        //6. sending the request
+        xhr.send();
+    });
 }
 
+//=================================================================
 // DELETE STUDENT RECORD
 async function deleteStudent(id) {
-    let deleteStudentData = await getData(`http://localhost/math_bubbles/api/delete.php?db_table=${dbTable}&id=${id}`, true);
+    let deleteStudentData = await getData(`http://localhost/math_bubbles/api/delete.php?db_table=${dbTable}&id=${id}`);
 
     if(deleteStudentData == "Registration record deleted."){
+        let newScoreboardData =  scoreBoardData.body.filter((item)=>{
+            return item.id != id;
+        });
+        // console.log(newScoreboardData);
+
         while (studentsTable.lastChild.id !== 'theader') {
             studentsTable.removeChild(studentsTable.lastChild);
         }
-        let email = getCookie("email");
-        console.log(email);
-        let dbTable = email.replace("@gmail.com", "");
+        while (scoreboardTable.lastChild.id !== 'scoreboard-theader') {
+            scoreboardTable.removeChild(scoreboardTable.lastChild);
+        }
+
         let studentsData = await getData(`http://localhost/math_bubbles/api/read.php?db_table=${dbTable}`);
-        let updateStudents = await updateStudentsUI(studentsData.body);
+        let updateStudents = updateStudentsUI(studentsData.body);
         deleteListen();
+        updateScoreboardUI(newScoreboardData);
     }else{
         console.log(deleteStudentData);
     }
 }
 
+//=================================================================
 // LISTEN FOR DELETE EVENT
 function deleteListen(){
     let deleteBtn = document.querySelectorAll('.delete');
@@ -97,16 +101,47 @@ function deleteListen(){
         deleteBtn[i].addEventListener('click', event => {
             let currentItem = this.event.currentTarget.closest("button");
             let currentItemID = currentItem.id;
-            console.log(`${currentItemID}`);
-            deleteStudent(currentItemID);
+            // console.log(`${currentItemID}`);
+            deleteStudent(currentItemID);   //call deleteStudent Function and pass that particular ID
         });
     }
 }
 
+//=================================================================
+// LISTEN FOR VIEW EVENT
+function viewListen(){
+    let viewBtn = document.querySelectorAll('.view');
+    for(let i = 0; i < viewBtn.length; i++){
+        viewBtn[i].addEventListener('click', event => {
+            let currentItem = this.event.currentTarget.closest("button");
+            let currentItemID = currentItem.id;
+            console.log(`${currentItemID}`);
+            viewStudentChart(currentItemID);   //call viewStudentChart Function and pass that particular ID
+        });
+    }
+}
 
-//DRAW CHART
+async function viewStudentChart(studentID){
+    xValues = [];
+    y1Values = [];
+    y2Values = [];
+
+    await fetchPerformanceData(studentID);
+
+    let currentStudent =  scoreBoardData.body.filter((item)=>{
+        return item.id === studentID;
+    });
+    currentStudentName = currentStudent[0].student_name;
+    console.log(currentStudentName);
+
+    performanceGraph.destroy();
+    performanceChart = drawChart(xValues, y1Values, y2Values);
+}
+
+//=================================================================
+//DRAW PERFORMANCE CHART
 function drawChart(xValues, y1Values, y2Values){
-    new Chart("myChart", {
+    performanceGraph = new Chart(ctx, {
         type: "line",
         data: {
             labels: xValues,
@@ -129,7 +164,7 @@ function drawChart(xValues, y1Values, y2Values){
             plugins: {
                 title: {
                 display: true,
-                text: 'Jane Doe Scores Line Graph'
+                text: `${currentStudentName} Scores Performance Graph`
                 },
                 legend: {
                     display: false,
@@ -157,40 +192,103 @@ function drawChart(xValues, y1Values, y2Values){
     });
 }
 
+async function fetchPerformanceData(studentID){
+    let studentDbTable = dbTable.concat(`_${studentID}`);
+    // console.log(studentDbTable);
+    let studentData = await getData(`http://localhost/math_bubbles/api/single_read.php/?db_table=${studentDbTable}`);
+    // console.log(studentData.body);
+    await studentData.body.forEach((item)=>{
+        xValues.push(item["time"]);
+        y1Values.push(item["level_1"]);
+        y2Values.push(item["level_2"]);
+    });
+}
+
 //=================================================================
-
-document.addEventListener('DOMContentLoaded', async() => {
-
-    // const ctx = document.getElementById('myChart').getContext('2d');
-    //xValues -> time, y1Values -> level_1, y2Values -> level_2
-    
-    var xValues = [];
-    var y1Values = [];
-    var y2Values = [];
-
-    try {
-        email = getCookie("email");
-        let dbTable = email.replace("@gmail.com", "");
-        let studentsData = await getData(`http://localhost/math_bubbles/api/read.php?db_table=${dbTable}`);
-
-        let studentData = await getData(`http://localhost/math_bubbles/api/single_read.php/?db_table=example_78`, true);
+// UPDATE USER UI
+function updateStudentsUI(data) {
+    // console.log(data);
+    for(let i in data){
+        let tr = document.createElement('tr');
+        tr.setAttribute("id", `tr${data[i].id}`);
         
-        let scoreBoardData = await getData(`http://localhost/math_bubbles/api/read_all.php/?db_table=example`);
-        console.log(scoreBoardData);
-        await studentData.forEach((item)=>{
-            // console.log(item);
-            xValues.push(item["time"]);
-            y1Values.push(item["level_1"]);
-            y2Values.push(item["level_2"]);
-        });
+        tr.innerHTML = (`
+            <td>${data[i].id}</td>
+            <td>${data[i].student_name}</td>
+            <button type="submit" name="submit" class="delete" id=${data[i].id} style="float: right;">&nbsp; Remove <i class="fa fa-trash" style="color:#000;"></i></button>
+        `);
+        studentsTable.appendChild(tr);
+    }
+}
+
+function updateScoreboardUI(data) {
+    firstStudentID = data[0].id;
+    currentStudentName = data[0].student_name;
+
+    for(let i in data){
+        let tr = document.createElement('tr');
+        tr.setAttribute("id", `tr${data[i].id}`);
+        
+        tr.innerHTML = (`
+            <td>${data[i].id}</td>
+            <td>${data[i].student_name}</td>
+            <td>${data[i].level_one}</td>
+            <td>${data[i].level_two}</td>
+            <td>${data[i].total_score}</td>
+            <button type="submit" name="submit" class="view" id=${data[i].id} style="float: right;">&nbsp; View </button>
+        `);
+        scoreboardTable.appendChild(tr);
+    }
+}
+
+function displayStudents(isDisplayStudents){
+    if(isDisplayStudents){
+        studentsView.classList.remove("hide");
+        scoreboardView.classList.add("hide");
+    }else{
+        studentsView.classList.add("hide");
+        scoreboardView.classList.remove("hide");
+    }
+}
+
+//=================================================================
+//ON DOCUMENT LOAD:
+//      1. Fetch ScoreBoard Data
+//      2. Update UI
+//      3. Fetch Performance Chart Data
+//      4. Draw Chart
+//      5. Fetch Student Data
+//      6. Update UI
+//      7. Listen for Delete Events
+document.addEventListener('DOMContentLoaded', async() => {
+    try {
+        //      Fetch All Student Data
+        allStudentsData = await getData(`http://localhost/math_bubbles/api/read.php?db_table=${dbTable}`);
+        let updateAllStudentsUI = updateStudentsUI(allStudentsData.body);
+        console.log(allStudentsData);
+        deleteListen();
+        //      1. Fetch ScoreBoard Data
+        scoreBoardData = await getData(`http://localhost/math_bubbles/api/read_all.php/?db_table=${dbTable}`);
+        // console.log(scoreBoardData);
+        //      2. Update UI
+        updateScoreboardUI(await scoreBoardData.body.sort((a, b) => b.total_score - a.total_score));
+        //---------------------------------------------------------
+        //      3. Fetch Performance Chart Data
+        await fetchPerformanceData(firstStudentID);
+        //      4. Draw Chart
         performanceChart = drawChart(xValues, y1Values, y2Values);
 
-        let updateStudents = await updateStudentsUI(studentsData.body);
-        deleteListen();
+        //---------------------------------------------------------
+        viewListen();
+        //---------------------------------------------------------
+        //      5. Fetch Student Data
+        // allStudentsData = await getData(`http://localhost/math_bubbles/api/read.php?db_table=${dbTable}`);
+        // let updateAllStudentsUI = updateStudentsUI(allStudentsData.body);
+        // console.log(updateAllStudentsUI);
+        // deleteListen();
     }
     catch(err){
         console.log(err);
     }
-    
-
+    studentsView.classList.add("hide");
 });

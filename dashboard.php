@@ -39,29 +39,16 @@
                 </div>
 
                 <div class = "actions">
-                   <form action="" method="post">
-                    <p><button name="students" value=""><strong style="color: #000;"><i class="fa fa-users" style="color:#353839;"></i>&nbsp; Students</strong></button></p>
-                    <p><button name="scoreboard" value=""><strong style="color: #000;"><i class="fa fa-table" style="color:#353839;"></i>&nbsp; ScoreBoard</strong></button></p>
-
-                    <!-- <p><a><strong style="color: #000;"><i class="fa fa-table" style="color:#353839"></i>&nbsp; ScoreBoard</strong></a></p> -->
+                    <p><button id= "students-id" onClick="displayStudents(true)"><strong style="color: #000;"><i class="fa fa-users" style="color:#353839;"></i>&nbsp; Students</strong></button></p>
+                    <p><button id= "scoreboard-id" onClick="displayStudents(false)" ><strong style="color: #000;"><i class="fa fa-table" style="color:#353839;"></i>&nbsp; ScoreBoard</strong></button></p>
                     <p><a href="./register_student.php"><strong style="color: #000;"><i class="fa fa-edit" style="color:#353839"></i>&nbsp; Register</strong></a></p>
-                   </form>
                 </div>
         </div>
       <!-- ----------------------------------------------------------- -->
         <div class = "right">
-            <!-- <div class = "right-nav">
-                <div>
-                <button>ScoreBoard</button>
-                <button>Register</button>
-                <button>Student</button>
-                </div>
-                <div class="dashboard-signout"><i class="fa fa-sign-out" style="color:#000;"></i> Log Out</div>
-            </div> -->
+            
             <div class = "visuals">
-                <?php
-                  if(isset($_POST['students'])){ ?>
-                    <div>
+                    <div id="students-table">
                       <h1 class="dashboard-h1">Students</h1>
                       <table>
                         <tbody id="students">
@@ -74,64 +61,32 @@
                         </tbody>
                       </table>
                     </div>
-                  <?php }elseif (isset($_POST['scoreboard'])){ ?>
-                    <div>
-                      <h1 class="dashboard-h1">Performance Chart</h1>
-                      <canvas id="myChart"  style="max-width:60vw;max-height:40vh"></canvas>
+                    <div id="students-scoreboard">
+                      <div id="chart-id">
+                        <h1 class="dashboard-h1">Performance Chart</h1>
+                        <div>
+                          <canvas id="myChart"  style="max-width:60vw;max-height:40vh"></canvas>
+                        </div>
+                      </div>
+      
+                      <div>
+                          <h1 class="dashboard-h1">Score Board</h1>
+                          <table>
+                              <tbody id="scoreboard">
+                                <tr id="scoreboard-theader">
+                                  <th>ID</th>
+                                  <th>PUPIL NAME</th>
+                                  <th>LEVEL ONE</th>
+                                  <th>LEVEL TWO</th>
+                                  <th>TOTAL SCORE</th>
+                                  <th style="float: right; padding-right: 16px;">VIEW PERFORMANCE CHART</th>
+                                </tr>
+                              </tbody>
+                          </table>
+                      </div>
+
                     </div>
-    
-                    <div>
-                        <h1 class="dashboard-h1">Score Board</h1>
-                        <table id="scoreboard">
-                            <tbody>
-                            <tr>
-                                <td><strong>S/N</strong></td>
-                                <td><strong>Name</strong></td>
-                                <td><strong>Total Score</strong></td>
-                            </tr>
-                            <tr>
-                                <td>01</td>
-                                <td>Jane Doe</td>
-                                <td>3</td>
-                            </tr>
-                            <tr>
-                                <td>02</td>
-                                <td>John Doe</td>
-                                <td>2</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                  <?php } else { ?>
-                    <div>
-                      <h1 class="dashboard-h1">Performance Chart</h1>
-                      <canvas id="myChart"  style="max-width:60vw;max-height:40vh"></canvas>
-                    </div>
-    
-                    <div>
-                        <h1 class="dashboard-h1">Score Board</h1>
-                        <table id="scoreboard">
-                            <tbody>
-                            <tr>
-                                <td><strong>S/N</strong></td>
-                                <td><strong>Name</strong></td>
-                                <td><strong>Total Score</strong></td>
-                            </tr>
-                            <tr>
-                                <td>01</td>
-                                <td>Jane Doe</td>
-                                <td>3</td>
-                            </tr>
-                            <tr>
-                                <td>02</td>
-                                <td>John Doe</td>
-                                <td>2</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                  <?php } ?>
-                
+                  
             </div>
         </div>
 			  

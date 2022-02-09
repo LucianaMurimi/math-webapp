@@ -22,10 +22,6 @@
     $stmt2Res = $stmt2->fetchAll(PDO::FETCH_ASSOC);
     $levelOneSum = $stmt2Res[0]["SUM(level_1)"];
 
-    echo json_encode($itemCount);
-
-
-    
     if($itemCount > 0){
         $studentArr = array();
         $studentArr["body"] = array();
